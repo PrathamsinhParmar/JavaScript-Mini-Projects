@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Outfit", 'sans-sarif';
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #container{
+            height: 150px;
+            width: 300px;
+            border: 1px solid black;
+            border-radius: 40px;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: royalblue;
+        }
+        #containerInner{
+            height: 99.5%;
+            width: 99.5%;
+            border: 1px solid black;
+            border-radius: 40px;
+            background-color: beige;  
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #time{
+            font-size: 45px;
+        }
+        #title{
+            padding: 10px;
+            font-size: 40px;
+        }
+
+        #support{
+            margin: -5;
+            display: flex;
+            justify-content: space-between;
+        }
+        #support i{
+            font-size: 30px;
+            padding: -5px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Digital Clock</h1>
+    <div id="container">
+        <div id="containerInner">
+            <div id="time">
+                <h1>Time</h1>
+            </div>
+        </div>
+    </div>
+    <div id="support">
+        <i class="ri-triangle-fill"></i>
+        <i class="ri-triangle-fill"></i>
+    </div>
+   
+</body>
+
+<script>
+    let time = document.getElementById('time')
+    
+    setInterval(()=>{
+        let date = new Date().toLocaleTimeString()
+        time.innerHTML = date
+    } , 1000)
+</script>
+</html>

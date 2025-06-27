@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlimited Colors</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Outfit", "Tahoma";
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+        body{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+        #btn{
+            padding: 15px;
+        }
+        #start, #stop{
+            padding: 7px 12px;
+            font-size: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 0.5px solid black;
+            background-color: transparent;
+        }
+        #start:hover, #stop:hover{
+            transform: scale(1.005);
+            background-color: azure;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Start Changing The Backgroud Color Every Second</h1>
+        <div id="btn">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+        </div>
+    </div>
+</body>
+<script>
+    let start = document.querySelector('#start')
+    let stop = document.querySelector('#stop')
+
+
+    // LOGIC : MAKE COLOR 
+    function makeRandomColor(){
+        let hex = [0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F']  // Total Hex Number
+        let color = '#'
+        for(let i=0 ; i<6 ; i++){
+            color = color + hex[Math.floor(Math.random() * 16)]
+            console.log(color);
+        }    
+        return color
+    }
+    
+    // START
+    let thisInterval;
+    function addColorInBack(){
+        if(thisInterval == null){
+            thisInterval = setInterval(()=>{
+                document.body.style.backgroundColor = makeRandomColor()
+            },800)
+        }
+    }
+    start.addEventListener('click', addColorInBack)
+
+
+    // STOP
+    function stopChangeColor(){
+        clearInterval(thisInterval)
+        thisInterval = null;
+    }
+    stop.addEventListener('click' , stopChangeColor)
+</script>
+</html>

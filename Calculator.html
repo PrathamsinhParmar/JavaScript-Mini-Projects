@@ -1,0 +1,149 @@
+<!-- Build Calculator using HTML, CSS & JavaScript  -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Outfit", 'sans-sarif';
+        }
+
+        html,body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(205, 202, 202);
+        }    
+        .container{
+            max-width: 500px;
+            border: 1px solid black;
+            padding: 25px;
+            border-radius: 25px;
+            background-color: black;
+        }
+        #display{
+            height: 70px;
+            max-width: 290px;
+            text-align: right;
+            padding: 10px;
+            font-size: 40px;
+            margin-bottom: 15px;
+            border: none;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        button{
+            height: 60px;
+            width: 60px;
+            margin: 5px;
+            border-radius: 20px;
+            border: none;
+            font-size: 20px;
+            background-color: gray;
+        }
+        button:hover{
+             background-color: rgb(192, 189, 189);
+        }
+        button:active{
+            background-color: rgb(220, 218, 218);
+        }
+        .operator-btn{
+            background-color: rgb(232, 155, 13);
+        }
+        .operator-btn:hover{
+            background-color: rgb(239, 171, 44);
+        }
+        .operator-btn:active{
+            background-color: rgb(247, 190, 85);
+        }
+    </style>
+ </head>
+ <body>
+    <div class="container">
+        <input type="text" readonly placeholder="0" id="display">
+        <div class="row">
+            <button class="operator-btn">AC</button>
+            <button class="operator-btn">DEL</button>
+            <button class="operator-btn">%</button>
+            <button class="operator-btn">/</button>
+        </div>
+        <div class="row">
+             <button class="btn">7</button>
+            <button class="btn">8</button>
+             <button class="btn">9</button>
+            <button class="operator-btn">*</button>
+        </div>
+         <div class="row">
+             <button class="btn">4</button>
+            <button class="btn">5</button>
+             <button class="btn">6</button>
+            <button class="operator-btn">-</button>
+        </div>
+         <div class="row">
+             <button class="btn">1</button>
+            <button class="btn">2</button>
+             <button class="btn">3</button>
+            <button class="operator-btn">+</button>
+        </div>
+         <div class="row">
+             <button class="btn">00</button>
+            <button class="btn">0</button>
+             <button class="btn">.</button>
+            <button class="operator-btn">=</button>
+        </div>
+    </div>
+ </body>
+ <script>
+    let display = document.querySelector('#display')
+
+    let buttons = document.querySelectorAll('button')
+
+    let buttonsArray = Array.from(buttons)
+
+    let string = ''
+    console.log(buttonsArray);
+
+    buttonsArray.forEach(element => {
+        element.addEventListener('click' , function(e){
+            let btnValue = e.target.innerHTML
+
+            if(btnValue === 'AC'){
+                string = ''
+                display.value = string
+            } 
+            else if(btnValue === 'DEL'){
+               string = string.substring(0,string.length-1)
+               display.value = string
+            }
+            else if(btnValue === '='){
+                try{
+                    string = eval(string)
+                    display.value = string
+                }
+                catch(error){
+                    console.log("Error");
+                    display.value = "Error"
+                }   
+            } 
+            else{
+                string += btnValue
+                display.value = string
+            }   
+        })
+    });
+
+ </script>
+ </html>

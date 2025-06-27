@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Remove Friend Fearure</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Outfit", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: cornflowerblue;
+        }
+        #card{
+            height: 350px;
+            width: 280px;
+            border-radius: 20px;
+            border: none;
+            background-color: white;
+            justify-content: center;
+            padding: 20px;
+            align-items: center;
+            text-align: center;
+        }
+        #image img{
+            width: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            object-position: center;
+        }
+        #card #name{
+            font-size: 25px;
+            padding: 10px;
+        }
+
+        #card #status{
+            font-size: 20px;
+            color: red;
+            /* padding: 10px; */
+        }
+
+        #btn{
+            font-size: 15px;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 1px solid gray;
+            background-color: cornsilk;
+            color: black;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="card">
+        <div id="image">
+            <img src="https://images.unsplash.com/photo-1534008757030-27299c4371b6?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+        </div>
+        <h5 id="name">Drashti Chikalya</h5>
+        <h5 id="status">Stranger</h5>
+        <div class="button">
+            <button id="btn">Add Friend</button>
+        </div>
+    </div>
+</body>
+<script>
+    let btn = document.querySelector('#btn')
+    let name = document.querySelector('#name')
+    let userstatus = document.querySelector('#status')
+    let image = document.querySelector('img')
+    let card = document.querySelector('#card')
+    
+    let flag = 0;
+
+    btn.addEventListener("click" , ()=>{
+        if(flag === 0){
+            userstatus.innerHTML = "Friend"
+            userstatus.style.color = "green"
+            btn.innerHTML = "Remove Friend"
+            image.style.boxShadow = "0 0 10px rgba(0,0,0,0.5), inset 0 0 10px rgba(0,0,0,0.2)"
+            image.style.border = "1px solid cornflowerblue"
+            card.style.border = "1px solid black"
+            flag = 1;
+        } else{
+            userstatus.innerHTML = "Stranger"
+            userstatus.style.color = "red"
+             btn.innerHTML = "Add Friend"
+            image.style.boxShadow = "none"
+            image.style.border = "none";
+            card.style.border = "none"
+            flag = 0;
+        }
+        
+    })
+</script>
+</html>

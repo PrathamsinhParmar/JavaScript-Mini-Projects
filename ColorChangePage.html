@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Scheme Switcher</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Outfit", 'sans-sarif';
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #container{
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #title{
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        #boxes{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            height: 100px;
+            width: 100px;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 20px 10px;
+        }
+        #box1{
+            background-color: royalblue;
+        }
+        #box2{
+            background-color:orangered;
+        }
+        #box3{
+            background-color: darkgreen;
+        }
+        #box4{
+            background-color: deeppink;
+        }
+        #text{
+            font-size: 30px;
+            font-weight: 600;
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2 id="title">Color Scheme Switcher</h2>
+        <div id="boxes">
+            <div class="box" id="box1"></div>
+            <div class="box" id="box2"></div>
+            <div class="box" id="box3"></div>
+            <div class="box" id="box4"></div>
+        </div>
+        <h3 id="text">Try Clicking on one of the colors above to change the background color of this page !</h3>
+    </div>
+</body>
+<script>
+    let container = document.querySelector('#container')
+    let title = document.querySelector('#title')
+    let text = document.querySelector('#text')
+    let flag1 = 0;
+
+    let box1 = document.querySelector('#box1')
+    box1.addEventListener('click' , ()=>{
+        if(flag1 === 0){
+            container.style.backgroundColor = "royalblue"
+            title.style.color = "white"
+            text.style.color = "white"
+            flag1 = 1
+        } else{
+            container.style.backgroundColor = "white"
+            title.style.color = "black"
+            text.style.color = "black"
+            flag1 = 0
+        }
+    })
+
+    let box2 = document.querySelector('#box2')
+    flag2 = 0
+    box2.addEventListener('click' , ()=>{
+        if(flag2 === 0){
+            container.style.backgroundColor = "orangered"
+            title.style.color = "white"
+            text.style.color = "white"
+            flag2 = 1
+        } else{
+            container.style.backgroundColor = "white"
+            title.style.color = "black"
+            text.style.color = "black"
+            flag2 = 0
+        }
+    })
+
+
+    let box3 = document.querySelector('#box3')
+    flag3 = 0;3
+    box3.addEventListener('click' , ()=>{
+        if(flag3 === 0){
+            container.style.backgroundColor = "darkgreen"
+            title.style.color = "white"
+            text.style.color = "white"
+            flag3 = 1
+        } else{
+            container.style.backgroundColor = "white"
+            title.style.color = "black"
+            text.style.color = "black"
+            flag3 = 0
+        }
+    })
+
+
+    let box4 = document.querySelector('#box4')
+    flag4 = 0;
+    box4.addEventListener('click' , ()=>{
+        if(flag4 === 0){
+            container.style.backgroundColor = "deeppink"
+            title.style.color = "white"
+            text.style.color = "white"
+            flag4 = 1
+        } else{
+            container.style.backgroundColor = "white"
+            title.style.color = "black"
+            text.style.color = "black"
+            flag4 = 0
+        }
+    })
+</script>
+</html>

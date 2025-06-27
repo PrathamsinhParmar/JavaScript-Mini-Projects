@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Cursor</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Outfit", 'sans-sarif';
+            font-weight: 600;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #container{
+            width: 100%;
+            height: 100%;
+            background-color: aqua;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #cursor{
+            height: 15px;
+            width: 15px;
+            /* color: yellow; */
+            background-color: white;
+            border-radius: 50%;
+            font-size: 20px;
+            position: absolute;
+            mix-blend-mode: difference;
+            /* transition: all linear 100ms; */
+            transform: translate(-50%,-50%);   /* TO center the cursor*/
+        }
+        #title{
+            font-size: 15vw;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h4 id="cursor"></h4>
+        <h1 id="title">Prathamsinh</h1>
+    </div>
+</body>
+<script>
+    let container = document.querySelector('#container')
+    let cursor = document.querySelector('#cursor')
+    
+    container.addEventListener("mousemove" , (details)=>{
+        cursor.style.left = details.x+'px'
+        cursor.style.top = details.y+'px'
+    })
+
+</script>
+</html>

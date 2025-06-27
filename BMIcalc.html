@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Outfit", 'sans-sarif';
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* background-color: black; */
+             background-color: cornsilk;
+        }
+
+        #container {
+            height: 360px;
+            width: 300px;
+            border: 1px solid black;
+            border-radius: 10px;
+            /* text-align: center; */
+            color: black;
+            border: 1px solid black;
+            background-color:deepskyblue;
+            font-weight: 550;
+        }
+
+        input {
+            width: 30%;
+            margin: 10px 5px;
+            height: 25px;
+            font-size: 18px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 0.3px solid black;
+        }
+
+        #title {
+            font-size: 30px;
+            padding: 20px;
+        }
+
+        #height,
+        #weight {
+            font-size: 18px;
+            /* padding: 10px 5px 10px 20px; */
+        }
+        label{
+            font-size: 20px;
+            padding: 10px 5px 10px 20px;
+        }
+
+        #result {
+            height: 25px;
+            width: 70%;
+            border: 1px solid black;
+            margin: 10px 5px;
+            font-size: 18px;
+            padding-left: 5px;
+            border-radius: 3px;
+        }
+
+        #bmiStatus {
+            font-size: 18px;
+
+        }
+
+        .flexcon {
+            display: flex;
+        }
+
+        #submit {
+            padding: 6px 10px;
+            margin: 10px 20px;
+            border-radius: 5px;
+            border: 0.5px solid black;
+        }
+
+        #status {
+            height: 50px;
+            width: 90%;
+            border: 1px solid black;
+            margin: auto;
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 10px;
+            background-color: cornsilk;
+        }
+
+        #spanTag {
+            padding: 4px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="title">BMI Calculator</h1>
+        <form action="">
+            <label for="height" >Height (CM) : </label>
+            <input type="text" id="height"><br>
+
+            <label for="weight" >Weight (KG) : </label>
+            <input type="text" id="weight"><br>
+
+            <div class="flexcon">
+                <label for="result" id="bmi">BMI : </label>
+                <textarea name="result" id="result"></textarea>
+            </div>
+            <button id="submit">Calculate</button>
+            <div id="status">
+                <span id="spanTag">Your Status : </span>
+                <span id="bmiStatus"></span>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    let form = document.querySelector('form')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let height = parseInt(document.querySelector('#height').value)
+        // console.log(height);
+        let weight = parseInt(document.querySelector('#weight').value)
+        // console.log(weight);
+        let bmiStatus = document.querySelector('#bmiStatus')
+
+        let result = document.querySelector('#result')
+        console.log(result);
+
+        if (height === " " || height <= 0 || isNaN(height)) {
+            result.innerHTML = `Not Valid Height ! ${height}`
+        }
+        else if (weight === " " || weight <= 0 || isNaN(weight)) {
+            reslut.innerHTML = `Not Valid Weight ! ${weight}`
+        }
+        else {
+            let bmi = (weight / ((height * height) / 10000)).toFixed(2);
+            result.innerHTML = `${bmi}`
+
+            if(bmi <= 18.6){
+                bmiStatus.innerHTML = "Under Weight !"
+            }
+            else if(bmi<24.9 && bmi>18.6){
+                bmiStatus.innerHTML = "Normal Weight !"
+            }
+            else{
+                bmiStatus.innerHTML = "Over Weight !"
+            }
+        }
+
+    });
+</script>
+
+</html>

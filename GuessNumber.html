@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The number</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Outfit", "Tahoma";
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: floralwhite;
+        }
+
+        #container {
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: magenta;
+        }
+
+        #title {
+            font-size: 30px;
+            margin: 20px;
+            color: white;
+        }
+
+        #info {
+            margin: 5px;
+        }
+
+        #maintitle {
+            font-size: 50px;
+            margin: 20px;
+        }
+
+        #display {
+            height: 30px;
+            width: 100px;
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-right: 10px;
+            font-size: 18px;
+            background-color: rgb(250, 233, 207);
+        }
+
+        button {
+            height: 30px;
+            padding: 0px 10px;
+            font-size: 15px;
+            border-radius: 10px;
+            border: 0.5px solid black;
+            margin-bottom: 20px;
+            font-size: 15px;
+            background-color: rgb(250, 233, 207);
+        }
+
+        button:hover {
+            transition: all ease 100;
+            background-color: white;
+            color: black;
+            border: none;
+        }
+
+        #result {
+            margin: 20px 0px;
+            height: 30px;
+            width: 200px;
+            border: 1px solid black;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            background-color: rgb(250, 233, 207);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1 id="title">Number Guessing Game</h1>
+        <h3 id="info">Try and guess a random number between 1 and 100.</h3>
+        <h3 id="info">You have 10 attempts to guess the right number </h3>
+        <h1 id="maintitle">Guess A Number</h1>
+        <form action="">
+            <input type="text" id="display">
+            <button>Submit Guess</button>
+        </form>
+        <h3>Previous Guess : <span id="previousGuess">Array</span></h3>
+        <h3>Guesses Remaining : <span id="remainGuess">10</span></h3>
+        <div id="result"></div>
+    </div>
+</body>
+
+<script>
+    let form = document.querySelector('form')
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let input = parseInt(document.querySelector('#display').value)
+        // console.log(input);   input Success
+
+        let max = 2;
+        let min = 1;
+        let randomNum = Math.floor((Math.random() * (max - min + 1)) + min)
+        // console.log(randomNum);    Random Number Success
+
+
+
+        // MAIN LOGIC : COMPARISION
+        let status = document.querySelector('#result')
+        let remainNode = document.querySelector('#remainGuess')
+        if (input === "" || input <= 0 || isNaN(input)) {
+            status.innerHTML = `Not Valid ! ${input}`
+            setTimeout(() => {
+                status.innerHTML = " "
+            }, 400)
+        } else {
+            if (input === randomNum) {
+                // status.innerHTML = "You Won !"
+                
+                setTimeout(() => {
+                    status.innerHTML = "You Won !"
+                }, 1000)
+                remainNode.innerHTML = 0
+            } else {
+                status.innerHTML = "You Loose !"
+                setTimeout(() => {
+                    status.innerHTML = " "
+                }, 400)
+            }
+        }
+
+
+        // Guesses Remaining Logic
+        let remainNum = parseInt(document.querySelector('#remainGuess').innerHTML)
+        if (!(input === "" || input <= 0 || isNaN(input) || input > 100)) {
+            // console.log(remainNum);
+            let newNum = remainNum - 1;
+            remainNode.innerHTML = newNum
+            if (newNum < 1) {
+                remainNode.innerHTML = 0
+                status.innerHTML = "Game Finish !"
+            }
+
+        }
+
+        // let myArr = new Array()
+        // myArr = document.querySelector('#previousGuess')
+        // myArr.appendChild(input)
+        // myArr.innerHTML = myArr.appendChild(input)
+
+
+    })
+</script>
+
+</html>
