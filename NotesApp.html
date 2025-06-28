@@ -55,6 +55,15 @@
             border: none;
             outline: none;
             border-radius: 20px;
+        
+        }
+        .btn button:hover{
+            background: linear-gradient(225deg, #40c9ff, #e81cff);
+            border: 1px solid white;
+        }
+        .btn button:active{
+            background: black;
+            color: white;
         }
 
         .inputBox {
@@ -108,13 +117,15 @@
         </div>
 
         <div class="noteContainer">
-           
-            <!-- <p class="inputBox" id="notePara" contenteditable="true">
-                <button id="delIcon" contenteditable="flase">
-                    <i 
-                    class="ri-delete-bin-6-line"></i>
+           <div class="inputBox">
+                <p class="noteText" id="notePara" contenteditable="true">
+                </p>
+                <button id="delIcon" contenteditable="flase" class="ri-delete-bin-6-line">
+                    
                 </button>
-            </p> -->
+           </div>
+            
+
         </div>
 </body>
 
@@ -136,26 +147,38 @@
         noteContainer.innerHTML = localStorage.getItem("notes")
     }
     showNotes()
+    // localStorage.removeItem('notes')
     createBtn.addEventListener('click', function () {
-        let inputBox = document.createElement('p')
+
+        let inputBox = document.createElement('div')
+        let noteText = document.createElement('p')
         let delIcon = document.createElement('button')
+
         inputBox.className = 'inputBox'
-        inputBox.setAttribute('contenteditable', 'true')
-        // inputBox.style.width = "350px"
-        delIcon.className = "ri-delete-bin-6-line"
+        noteText.className = 'noteText'    // Paragraph
+        noteText.setAttribute('contenteditable', 'true')
+
         delIcon.id = "delIcon"
         delIcon.setAttribute('contenteditable' , 'false')
+        delIcon.className = "ri-delete-bin-6-line"
+
+        inputBox.appendChild(noteText)
         inputBox.appendChild(delIcon)
         noteContainer.appendChild(inputBox)
+
+        
     })
 
 
-
+    // DELETE NOTE LOGIC
     noteContainer.addEventListener('click' , function(e){
         if(e.target.tagName == "BUTTON"){
             e.target.parentElement.remove();
             updateStorage()
         }
+        // console.log(e.target.tagName);
+        // console.log((e.target.parentElement).parentElement);
+
         else if(e.target.tagName === "P"){
             notes = document.querySelectorAll('.inputBox')
             notes.forEach(nt => {
@@ -163,6 +186,13 @@
                     updateStorage()
                 }
             });
+        }
+    })
+
+    document.addEventListener('keydown', function(event){
+        if(event.key === 'Enter'){
+            document.execCommand("insertLineBreak")
+            event.preventDefault()
         }
     })
 </script>
