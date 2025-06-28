@@ -78,6 +78,8 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             white-space: pre-wrap; /* This wraps long text nicely */
+            display: flex;
+            flex-direction: column;
         }
 
         .noteContainer{
@@ -103,6 +105,14 @@
             bottom: 10px;
             right: 10px;
         }
+
+        .date{
+            color:black;
+            position: absolute;
+            bottom: 5px;
+            left: 8px;
+            font-size: 10px;
+        }
     </style>
 </head>
 
@@ -117,12 +127,15 @@
         </div>
 
         <div class="noteContainer">
+
            <div class="inputBox">
                 <p class="noteText" id="notePara" contenteditable="true">
                 </p>
-                <button id="delIcon" contenteditable="flase" class="ri-delete-bin-6-line">
-                    
+                <button id="delIcon" contenteditable="flase" class="ri-delete-bin-6-line">    
                 </button>
+                <div class="date">
+                    Current Date Time
+                </div>
            </div>
             
 
@@ -138,6 +151,7 @@
 
     let notes = document.querySelector('.inputBox')
 
+    // let date = document.querySelector('.date')
 
     function updateStorage(){
         localStorage.setItem("notes" , noteContainer.innerHTML)
@@ -148,22 +162,28 @@
     }
     showNotes()
     // localStorage.removeItem('notes')
+
+    // Text Area Appear Logic
     createBtn.addEventListener('click', function () {
 
         let inputBox = document.createElement('div')
         let noteText = document.createElement('p')
         let delIcon = document.createElement('button')
-
+        let date = document.createElement('div')
+        
         inputBox.className = 'inputBox'
         noteText.className = 'noteText'    // Paragraph
         noteText.setAttribute('contenteditable', 'true')
+        date.className = 'date'
 
         delIcon.id = "delIcon"
         delIcon.setAttribute('contenteditable' , 'false')
         delIcon.className = "ri-delete-bin-6-line"
+        date.innerHTML = new Date().toLocaleString();
 
         inputBox.appendChild(noteText)
         inputBox.appendChild(delIcon)
+        inputBox.appendChild(date)
         noteContainer.appendChild(inputBox)
 
         
@@ -195,6 +215,8 @@
             event.preventDefault()
         }
     })
+
+    console.log(new Date().toLocaleString());
 </script>
 
 </html>
