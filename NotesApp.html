@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <title>Notes Web Application</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Outfit", 'sans-sarif';
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: top;
+            background: linear-gradient(225deg, #40c9ff, #e81cff);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            align-items: center;
+        }
+
+        .title {
+            gap: 5px;
+            display: flex;
+        }
+
+        .btn button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 15px;
+            border: none;
+            outline: none;
+            border-radius: 20px;
+        }
+
+        .inputBox {
+            min-height: 100px;
+            position: relative;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid black;
+           max-width: 320px;
+            background-color: white;
+            /* overflow: hidden; */
+        }
+        .noteContainer{
+            margin-top: 15px;
+            width: 320px;
+             align-items: center;
+        }
+
+        .noteContainer p {
+            border: none;
+            outline: none;
+            display: flex;
+            width: 320px;
+           
+        }
+
+        #delIcon {
+            /* margin-top: 10px; */
+            text-align: right;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <h1 id="iconTitle"><i class="ri-notion-line"></i></h1>
+            <h1>Notes Web App</h1>
+        </div>
+        <div class="btn">
+            <button><i class="ri-ball-pen-line"></i> Create Notes</button>
+        </div>
+
+        <div class="noteContainer">
+           
+            <!-- <p class="inputBox" id="notePara" contenteditable="true">
+                <button id="delIcon" contenteditable="flase">
+                    <i 
+                    class="ri-delete-bin-6-line"></i>
+                </button>
+            </p> -->
+        </div>
+</body>
+
+<script>
+
+    const noteContainer = document.querySelector('.noteContainer')
+    console.log("Try", noteContainer);
+
+    const createBtn = document.querySelector('button')
+
+    let notes = document.querySelector('.inputBox')
+
+
+    function updateStorage(){
+        localStorage.setItem("notes" , noteContainer.innerHTML)
+    }
+
+    function showNotes(){
+        noteContainer.innerHTML = localStorage.getItem("notes")
+    }
+    showNotes()
+    createBtn.addEventListener('click', function () {
+        let inputBox = document.createElement('p')
+        let delIcon = document.createElement('button')
+        inputBox.className = 'inputBox'
+        inputBox.setAttribute('contenteditable', 'true')
+        inputBox.style.width = "350px"
+        delIcon.className = "ri-delete-bin-6-line"
+        delIcon.id = "delIcon"
+        delIcon.setAttribute('contenteditable' , 'false')
+        inputBox.appendChild(delIcon)
+        noteContainer.appendChild(inputBox)
+    })
+
+
+
+    noteContainer.addEventListener('click' , function(e){
+        if(e.target.tagName == "BUTTON"){
+            e.target.parentElement.remove();
+            updateStorage()
+        }
+        else if(e.target.tagName === "P"){
+            notes = document.querySelectorAll('.inputBox')
+            notes.forEach(nt => {
+                nt.onkeyup = function(){
+                    updateStorage()
+                }
+            });
+        }
+    })
+</script>
+
+</html>
