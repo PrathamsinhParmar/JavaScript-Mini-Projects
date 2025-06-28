@@ -40,8 +40,14 @@
         .title {
             gap: 5px;
             display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
+        #iconTitle i{
+            font-size: 50px;
+            color: black;
+        }
         .btn button {
             margin-top: 20px;
             padding: 10px;
@@ -58,22 +64,27 @@
             padding: 10px;
             border-radius: 10px;
             border: 1px solid black;
-           max-width: 320px;
+            max-width: 320px;
             background-color: white;
-            /* overflow: hidden; */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap; /* This wraps long text nicely */
         }
+
         .noteContainer{
             margin-top: 15px;
             width: 320px;
-             align-items: center;
+            align-items: center;
         }
 
         .noteContainer p {
             border: none;
             outline: none;
-            display: flex;
-            width: 320px;
-           
+            display: block;
+            width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
         }
 
         #delIcon {
@@ -130,7 +141,7 @@
         let delIcon = document.createElement('button')
         inputBox.className = 'inputBox'
         inputBox.setAttribute('contenteditable', 'true')
-        inputBox.style.width = "350px"
+        // inputBox.style.width = "350px"
         delIcon.className = "ri-delete-bin-6-line"
         delIcon.id = "delIcon"
         delIcon.setAttribute('contenteditable' , 'false')
